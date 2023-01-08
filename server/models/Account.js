@@ -1,14 +1,16 @@
 const mongoose = require('mongoose')
 
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO_URI)
-
-    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline)
-  } catch (error) {
-    console.log(error)
-    process.exit(1)
+const AccountSchema = mongoose.Schema(
+  {
+    identifiant: {
+      type: String
+    },
+    solde: {
+      type: String
+    },
+    transaction: {
+      type: String
+    }
   }
-}
-
-module.exports = connectDB
+)
+module.exports = mongoose.model('Account',AccountSchema)

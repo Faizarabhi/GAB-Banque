@@ -7,9 +7,10 @@ module.exports = (Collection) => {
   // ======
   const create = (req, res) => {
     const newEntry = req.body;
+    console.log(req.body,`data`)
     Collection.create(newEntry, (e,newEntry) => {
       if(e) {
-        console.log(e);
+        console.log('error',);
         res.sendStatus(500);
       } else {
         res.send(newEntry);

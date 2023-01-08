@@ -1,8 +1,77 @@
+
+// Admin Part
  ###
-POST http://localhost:8000/api/Admin 
+POST http://localhost:3000/api/Admin
 Content-Type: application/json
 
 {
 
-"Keys": "16", "Nom_Value": "max", "Value": "150"
+"name": "Admin",
+"email": "Admin@gmail.com",
+"identifiant": "CIN",
+"password": "150"
+}
+###
+GET http://localhost:3000/api/Admin
+
+### 
+GET http://localhost:3000/api/Admin/63babfe58f44c4f4e3304aff
+###
+PUT http://localhost:3000/api/Admin/63babfe58f44c4f4e3304aff
+Content-Type: application/json
+
+{
+
+"name": "Admin",
+"email": "updatedAdmin@gmail.com",
+"identifiant": "CIN",
+"password": "150"
+}
+
+###
+DELETE  http://localhost:3000/api/Admin/:id
+// User Part
+###
+POST http://localhost:3000/api/User
+Content-Type: application/json
+
+{
+
+"name": "Useru",
+"email": "userhhh@gmail.com",
+"identifiant": "CIN",
+"password": "150"
+}
+
+###
+GET http://localhost:3000/api/User
+
+### 
+GET http://localhost:3000/api/User/63babfa6d2ddedabbfa25864
+###
+PUT http://localhost:3000/api/User/63babfa6d2ddedabbfa25864
+Content-Type: application/json
+
+{
+
+"name": "User",
+"email": "updateduser@gmail.com",
+"identifiant": "CIN",
+"password": "150"
+}
+
+###
+DELETE  http://localhost:3000/api/User/63b97c7f5595d16054eac565
+
+// Account Part
+
+###
+POST http://localhost:3000/api/Account
+Content-Type: application/json
+
+{
+
+"identifiant": "hello",
+"solde": "hello",
+"transaction": "hello"
 }
