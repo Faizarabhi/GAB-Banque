@@ -75,3 +75,24 @@ Content-Type: application/json
 "solde": "hello",
 "transaction": "hello"
 }
+
+
+###
+GET http://localhost:3000/api/Account
+
+### 
+GET http://localhost:3000/api/Account/:id
+###
+PUT http://localhost:3000/api/Account/:id
+Content-Type: application/json
+
+{
+
+
+"identifiant": "hello",
+"solde": "hello",
+"transaction": "hello"
+}
+
+###
+DELETE  http://localhost:3000/api/User/63b97c7f5595d16054eac565

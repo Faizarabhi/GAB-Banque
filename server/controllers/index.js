@@ -6,6 +6,7 @@ module.exports = (Collection) => {
   // Create
   // ======
   const create = (req, res) => {
+    // if Collection User hashe mdps res.body.mdps = hash(res.body.mdps)
     const newEntry = req.body;
     console.log(req.body,`data`)
     Collection.create(newEntry, (e,newEntry) => {
@@ -17,7 +18,8 @@ module.exports = (Collection) => {
       }
     });
   };
-  
+  // Login avec Jwt
+
   // =========
   // Read many
   // =========
@@ -81,6 +83,7 @@ module.exports = (Collection) => {
 
   let router = express.Router();
 
+  // router.post('/', auth, login);
   router.post('/', create);
   router.get('/', readMany);
   router.get('/:_id', readOne);
@@ -88,5 +91,4 @@ module.exports = (Collection) => {
   router.delete('/:_id', remove);
 
   return router;
-
 }

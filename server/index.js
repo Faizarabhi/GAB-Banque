@@ -7,17 +7,20 @@ const models = require('./models')
 var cors = require('cors')
 const bodyParser = require('body-parser');
 
+
 connectDB()
-// console.log('rr')
+
+app.use(cors())
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(cors())
 
+//errorHandler
 
  // CRUD
-app.use('/api/Admin',require('./controllers/crud')(models.Admin));
-app.use('/api/User', require('./controllers/crud')(models.User));
-app.use('/api/Account', require('./controllers/crud')(models.Account));
+app.use('/api/Admin',require('./controllers')(models.Admin));
+app.use('/api/User', require('./controllers')(models.User));
+app.use('/api/Account', require('./controllers')(models.Account));
 app.listen( port, console.log(`port ${port} runinig`))
