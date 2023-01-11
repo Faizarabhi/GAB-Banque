@@ -1,24 +1,43 @@
 const express = require('express');
-const models = require('../models')
+const models = require('../models');
+var morgan = require('morgan');
+const { Admin, Account } = require('../models');
+const bcrypt = require('bcryptjs')
+// import jwt from "jsonwebtoken";
+// const generateToken = (id) => {
+//   return jwt.sign({ id }, "abc123", {
+//     expiresIn: '3h',
+//   })
+// }
 module.exports = (Collection) => {
-
+  
   // ======
   // Create
   // ======
-  const create = (req, res) => {
-    // if Collection User hashe mdps res.body.mdps = hash(res.body.mdps)
-    const newEntry = req.body;
-    console.log(req.body,`data`)
-    Collection.create(newEntry, (e,newEntry) => {
-      if(e) {
-        console.log('error',);
-        res.sendStatus(500);
-      } else {
-        res.send(newEntry);
-      }
-    });
+ 
+  const create = async (req, res) => {
+    let user = async ()=>{
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash( req.body.password, salt);
+      req.body.password = hashedPassword
+      console.log(req.body.password,'hashhhhhhh') 
+      Create()
+    }
+    const newEntry =  req.body;
+    const Create = ()=>{
+      Collection.create(newEntry, (e,newEntry) => {
+        if(e) {
+          console.log('error',e);
+          res.sendStatus(500);
+        } else {
+          console.log('succes')
+          res.send(newEntry);
+        }
+      });
+    }
+    Collection == models.User ?  user() : models.Admin ? models.Account ? await Create() : console.log('we don\'t ready for super admin'): 'yes';
   };
-  // Login avec Jwt
+  
 
   // =========
   // Read many
@@ -39,8 +58,21 @@ module.exports = (Collection) => {
   // ========
   // Read one
   // ========
-  const readOne = (req, res) => {
-    const { _id } = req.params;
+  // generate jwt for admin and for user
+  const readOne = async(req, res) => {
+
+    const findUser = async()=>{
+      Collection == models.User ?  login() : models.Admin ? login() : models.Account ?  findAcc() : console.log('we don\'t ready for super admin');
+      const login =async ()=>{
+      const email = req.body.email
+      const password = req.body.password
+    const user = await Collection.findOne({ email })
+    user && (await bcrypt.compare(password, user.password)) ? console.log('loged') : console.log('nooooo')
+   }
+   (req.body.email && req.body.password) ? await findUser() : console.log('nooo')
+  }
+  const { _id } = req.params;
+  const findAcc = ()=>{
   
     Collection.findById(_id, (e,result) => {
       if(e) {
@@ -50,6 +82,7 @@ module.exports = (Collection) => {
         res.send(result);
       }
     });
+  }
   };
   
   // ======
