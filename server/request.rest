@@ -92,9 +92,9 @@ Content-Type: application/json
 GET http://localhost:3000/api/Account
 
 ### 
-GET http://localhost:3000/api/Account/63bad2d9f5d2a2b4d8dd1486
+GET http://localhost:3000/api/Account/63bef30145a564f0eed2123b
 ###
-PUT http://localhost:3000/api/Account/:id
+PUT http://localhost:3000/api/Account/63bef30145a564f0eed2123b
 Content-Type: application/json
 
 {

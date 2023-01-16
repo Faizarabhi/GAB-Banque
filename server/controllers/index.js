@@ -62,8 +62,8 @@ module.exports = (Collection) => {
   const readOne = async(req, res) => {
 
     const findUser = async()=>{
-      Collection == models.User ?  login() : models.Admin ? login() : models.Account ?  findAcc() : console.log('we don\'t ready for super admin');
-      const login =async ()=>{
+      Collection === models.User ?  login() : models.Admin ? login() : models.Account ?  findAcc() : console.log('we don\'t ready for super admin');
+      const login = async ()=>{
       const email = req.body.email
       const password = req.body.password
     const user = await Collection.findOne({ email })
